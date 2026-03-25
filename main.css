@@ -766,10 +766,13 @@ button:focus-visible {
 		min-height: 0;
 		flex-direction: column;
 		align-items: flex-start;
+		gap: var(--space-2);
 	}
 
 	.nav {
+		width: 100%;
 		justify-content: flex-start;
+		gap: var(--space-1);
 	}
 
 	.site-header .nav .btn--primary {
@@ -785,8 +788,10 @@ button:focus-visible {
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius);
 		background-color: var(--color-surface);
+		color: var(--color-text);
 		font-size: 0.875rem;
 		font-weight: 600;
+		line-height: 1;
 	}
 
 	.facts,
@@ -794,22 +799,33 @@ button:focus-visible {
 		grid-template-columns: 1fr;
 	}
 
+	.facts {
+		margin-top: var(--space-3);
+	}
+
 	.fact {
 		min-height: 0;
 		padding: var(--space-3);
+		gap: var(--space-2);
 	}
 
 	.fact__val {
 		margin-top: var(--space-1);
 		margin-bottom: 0;
+		max-width: none;
 	}
 
 	.actions {
 		grid-template-columns: 1fr;
 	}
 
+	.actions .btn {
+		width: 100%;
+	}
+
 	.actions .btn--ghost {
 		grid-column: 1;
+		justify-self: stretch;
 	}
 
 	.contact__row {
@@ -819,6 +835,7 @@ button:focus-visible {
 
 	.contact__row .btn {
 		justify-self: start;
+		width: auto;
 	}
 }
 
@@ -837,14 +854,6 @@ button:focus-visible {
 
 	.card {
 		padding: var(--space-2);
-	}
-
-	.btn {
-		width: 100%;
-	}
-
-	.actions .btn--ghost {
-		width: auto;
 	}
 }
 
@@ -869,4 +878,3 @@ button:focus-visible {
 		transition: none;
 	}
 }
-
