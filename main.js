@@ -245,7 +245,6 @@
 		};
 
 		const goToHashTarget = (hash) => {
-			if (!desktopScreenMode.matches) return false;
 			if (!hash || hash === "#") return false;
 			if (hash === "#top" || hash === "#home") {
 				return goToScreen(0, { preferredNavId: "" });
@@ -334,7 +333,6 @@
 		screenContainer.addEventListener(
 			"scroll",
 			() => {
-				if (!desktopScreenMode.matches) return;
 				window.clearTimeout(scrollSyncTimer);
 				scrollSyncTimer = window.setTimeout(() => {
 					syncActiveIndexByScroll();
@@ -345,23 +343,18 @@
 
 		const handleScreenModeChange = () => {
 			updateHeaderHeight();
-			if (desktopScreenMode.matches) {
-				syncActiveIndexByScroll();
-				goToScreen(activeScreenIndex, { updateHash: false, instant: true });
-				return;
-			}
-
 			isWheelLocked = false;
-			updateActiveNav(screens[activeScreenIndex].id);
+			syncActiveIndexByScroll();
+			goToScreen(activeScreenIndex, { updateHash: false, instant: true });
 		};
 
 		desktopScreenMode.addEventListener("change", handleScreenModeChange);
 
-		if (window.location.hash && desktopScreenMode.matches && !goToHashTarget(window.location.hash)) {
+		if (window.location.hash && !goToHashTarget(window.location.hash)) {
 			goToScreen(0, { updateHash: false, preferredNavId: "", instant: true });
 		}
 
-		if (!window.location.hash && desktopScreenMode.matches) {
+		if (!window.location.hash) {
 			goToScreen(0, { updateHash: false, preferredNavId: "", instant: true });
 		}
 
